@@ -22,14 +22,11 @@ defmodule DayOnePartTwo do
 
   @searchRegex "1|2|3|4|5|6|7|8|9|0|one|two|three|four|five|six|seven|eight|nine"
 
-  def solution(file_path) do
-    {:ok, contents} = File.read(file_path)
-
-    contents
+  def solution() do
+    File.read!("#{__DIR__}/input.txt")
     |> String.split("\n")
     |> Enum.map(&get_first_and_last_valids/1)
     |> Enum.sum()
-    |> IO.puts()
   end
 
   def get_first_and_last_valids(str) do
@@ -46,5 +43,3 @@ defmodule DayOnePartTwo do
       Map.get(@validMatchMap, lastMatch)
   end
 end
-
-DayOnePartTwo.solution("input.txt")

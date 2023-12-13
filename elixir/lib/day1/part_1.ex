@@ -1,20 +1,17 @@
-defmodule DayonePartOne do
-  def solution(file_path) do
-    {:ok, contents} = File.read(file_path)
-
-    contents
+defmodule DayOnePartOne do
+  def solution() do
+    File.read!("#{__DIR__}/input.txt")
     |> String.split("\n")
-    |> Enum.map(&DayonePartOne.extract_numbers/1)
+    |> Enum.map(&extract_numbers/1)
     |> Enum.sum()
-    |> IO.puts()
   end
 
   def extract_numbers(str) do
     str
     |> String.graphemes()
-    |> Enum.filter(&DayonePartOne.parse_number/1)
+    |> Enum.filter(&parse_number/1)
     |> Enum.join()
-    |> DayonePartOne.check_count_and_duplicate()
+    |> check_count_and_duplicate()
   end
 
   def parse_number(c) do
@@ -34,5 +31,3 @@ defmodule DayonePartOne do
     end
   end
 end
-
-DayonePartOne.solution("input.txt")
